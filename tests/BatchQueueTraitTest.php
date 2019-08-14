@@ -46,7 +46,7 @@ class BatchQueueTraitTest extends TestCase
     }
 
 
-    public function test_releaseBatch()
+    public function testReleaseBatch()
     {
         $payloads = [];
         for ($i = 0; $i < 19; $i++) {
@@ -78,7 +78,7 @@ class BatchQueueTraitTest extends TestCase
         }
     }
 
-    public function test_multipleQueues()
+    public function testMultipleQueues()
     {
         $payloads = [];
         for ($i = 0; $i < 29; $i++) {
