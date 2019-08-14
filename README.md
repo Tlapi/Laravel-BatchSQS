@@ -15,5 +15,47 @@ Then to publish config files:
 
 ## Usage
 
-Set your queue driver (in `queue.php`) to `sqs-batch`.
+This package provides a queue connector called `sqs-batch`. Create a block inside `connections` as usual:
+
+```php
+'connections' => [
+        'sqs-batch' => [
+            'driver'      => 'sqs',
+            'key'         => env('AWS_KEY', null),
+            'secret'      => env('AWS_SECRET', null),
+            'prefix'      => env('AWS_PREFIX', null),
+            'queue'       => env('AWS_QUEUE', null),
+            'region'      => env('AWS_REGION', null),
+        ],
+// [...]
+```
+
 You can use all the usual Laravel SQS queue config options.
+
+### Modifying messages before release
+
+When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Events\BatchMessageReleasingEvent` is dispatched.
+To modify each message before it reaches the queue, simply define a listener which will modify the message and then return it:
+
+```php
+<?php
+use \CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent;
+class BatchMessageReleasingEventListener
+{
+    public function handle(BatchMessageReleasingEvent $event)
+    {
+        $return = [];
+
+        // If the message is 'foo' it should be changed to 'foobar'
+        if ($event->message['MessageBody'] == 'foo') {
+            $return['MessageBody'] = 'foobar';
+        }
+        // If the queue name ends in .norbert, the message should have a message group id consisting of 128 '1's
+        if (preg_match('/.*\.norbert/', $event->queue)) {
+            $return['MessageGroupId'] = str_repeat("1", 128);
+        }
+
+        return $return;
+    }
+}
+```
