@@ -1,5 +1,6 @@
 <?php
 
+namespace CoInvestor\BatchSQS\tests;
 
 use Faker\Factory as Faker;
 use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
