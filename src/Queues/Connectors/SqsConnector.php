@@ -4,7 +4,7 @@ namespace CoInvestor\BatchSQS\Queues\Connectors;
 
 use Aws\Sqs\SqsClient;
 use Illuminate\Support\Arr;
-use App\Core\Queues\SqsQueue;
+use CoInvestor\BatchSQS\Queues\SqsQueue;
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Queue\Connectors\SqsConnector as IlluminateSqsConnector;
 
