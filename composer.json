@@ -2,11 +2,12 @@
   "name": "coinvestor/laravel-batchsqs",
   "description": "An alternative Amazon SQS queue driver for Laravel. Messages are sent in batches rather than one at a time, which may be more efficient if you have a lot of messages to send.",
   "type": "library",
+  "keywords": ["sqs", "laravel", "queue"],
   "license": "MIT",
   "authors": [
     {
       "name": "CoInvestor",
-      "email": "support@coinvestor.co.uk"
+      "email": "tbc@coinvestor.co.uk"
     }
   ],
   "autoload": {
