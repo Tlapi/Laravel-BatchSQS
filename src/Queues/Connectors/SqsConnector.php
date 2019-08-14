@@ -1,6 +1,6 @@
 <?php
 
-namespace CoInvestor\BatchSQSQueue\Queues\Connectors;
+namespace CoInvestor\BatchSQS\Queues\Connectors;
 
 use Aws\Sqs\SqsClient;
 use Illuminate\Support\Arr;

@@ -2,7 +2,7 @@
 
 
 use Faker\Factory as Faker;
-use CoInvestor\BatchSQSQueue\Queues\Traits\BatchQueueTrait;
+use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 use Orchestra\Testbench\TestCase;
 
 

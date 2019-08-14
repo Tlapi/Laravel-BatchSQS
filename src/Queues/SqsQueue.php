@@ -1,11 +1,11 @@
 <?php
 
-namespace CoInvestor\BatchSQSQueue\Queues;
+namespace CoInvestor\BatchSQS\Queues;
 
 use Illuminate\Support\Facades\Event;
-use CoInvestor\BatchSQSQueue\Queues\Traits\BatchQueueTrait;
+use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 use Illuminate\Queue\SqsQueue as IlluminateSqsQueue;
-use CoInvestor\BatchSQSQueue\Queues\Events\BatchMessageReleasingEvent;
+use CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent;
 
 class SqsQueue extends IlluminateSqsQueue
 {

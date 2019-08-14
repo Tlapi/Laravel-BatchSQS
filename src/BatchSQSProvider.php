@@ -1,8 +1,8 @@
 <?php
-namespace CoInvestor\BatchSQSQueue;
+namespace CoInvestor\BatchSQS;
 
 use Illuminate\Support\ServiceProvider;
-use CoInvestor\BatchSQSQueue\Queues\Connectors\SqsConnector;
+use CoInvestor\BatchSQS\Queues\Connectors\SqsConnector;
 
 class BatchSQSProvider extends ServiceProvider
 {

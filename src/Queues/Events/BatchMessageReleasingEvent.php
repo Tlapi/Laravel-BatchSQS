@@ -1,6 +1,6 @@
 <?php
 
-namespace CoInvestor\BatchSQSQueue\Queues\Events;
+namespace CoInvestor\BatchSQS\Queues\Events;
 
 use Illuminate\Queue\SerializesModels;
 

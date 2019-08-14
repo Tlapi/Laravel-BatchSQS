@@ -1,6 +1,6 @@
 <?php
 
-namespace CoInvestor\BatchSQSQueue\Queues\Traits;
+namespace CoInvestor\BatchSQS\Queues\Traits;
 
 trait BatchQueueTrait
 {
