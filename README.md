@@ -15,12 +15,12 @@ Then to publish config files:
 
 ## Usage
 
-This package provides a queue connector called `sqs-batch`. Create a block inside `connections` as usual:
+This package provides a queue connector called `batch-sqs`. Create a block inside `connections` as usual:
 
 ```php
 'connections' => [
-        'sqs-batch' => [
-            'driver'      => 'sqs-batch',
+        'batch-sqs' => [
+            'driver'      => 'batch-sqs',
             'key'         => env('AWS_KEY', null),
             'secret'      => env('AWS_SECRET', null),
             'prefix'      => env('AWS_PREFIX', null),
