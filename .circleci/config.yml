@@ -17,7 +17,7 @@ jobs:
           paths:
             - vendor
       - run: mkdir -p tests/_results/phpunit
-      - run: mkdir tests/_artifacts
+      - run: mkdir tests/_results/phpcs
       - run: ./vendor/bin/phpunit -v --log-junit tests/_results/phpunit/phpunit.xml
       - run: ./vendor/bin/phpcs --report-file=tests/_results/phpcs/phpcs.txt
       - store_test_results:
