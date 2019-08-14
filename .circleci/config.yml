@@ -16,9 +16,11 @@ jobs:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
-      - run: ./vendor/bin/phpunit -v
-      - run: ./vendor/bin/phpcs
+      - run: mkdir -p tests/_results
+      - run: mkdir tests/_artifacts
+      - run: ./vendor/bin/phpunit -v --log-junit tests/_results/phpunit.xml
+      - run: ./vendor/bin/phpcs --report=tests/_artifacts/phpcs.txt
       - store_test_results:
-          path: tests/_output
+          path: tests/_results
       - store_artifacts:
-          path: tests/_output
+          path: tests/_artifacts
