@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<ruleset name="CoLint">
+    <description>PSR 1 and 2 with enhanced comment &amp; formating styles.</description>
+
+    <!-- Directories to lint -->
+    <file>app</file>
+    <file>tests</file>
+
+    <!-- Files to ignore -->
+    <exclude-pattern>app/Services/FinancialCalculationService.php</exclude-pattern>
+    <exclude-pattern>tests/extractTestDataFromReyker.php</exclude-pattern>
+
+    <!-- Setup -->
+    <arg name="basepath" value="." />
+    <arg name="parallel" value="75" />
+
+    <!-- Include the PSR-1 & PSR-2 rule sets -->
+    <rule ref="PSR1" />
+    <rule ref="PSR2" />
+
+    <!-- Space rules: force blank line checks -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false" />
+        </properties>
+    </rule>
+
+    <!-- Bonus comment & formatting rules -->
+    <rule ref="Squiz.Commenting.BlockComment" />
+    <rule ref="Squiz.Commenting.DocCommentAlignment" />
+    <rule ref="Squiz.Commenting.EmptyCatchComment" />
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+    <rule ref="Generic.Formatting.SpaceAfterCast" />
+    <rule ref="Squiz.Commenting.InlineComment">
+        <exclude name="Squiz.Commenting.InlineComment.NotCapital" />
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+    </rule>
+
+    <!-- Tweak slightly -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="250" />
+        </properties>
+    </rule>
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="spacing" value="1" />
+        </properties>
+    </rule>
+
+    <!-- Suppress rules we don't care about -->
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <severity>0</severity>
+    </rule>
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <severity>0</severity>
+    </rule>
+
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+
+</ruleset>
