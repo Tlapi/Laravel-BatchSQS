@@ -5,7 +5,6 @@ use Faker\Factory as Faker;
 use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 use Orchestra\Testbench\TestCase;
 
-
 class BatchQueueTraitTest extends TestCase
 {
     protected $fakeQueue;
