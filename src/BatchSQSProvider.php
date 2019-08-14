@@ -11,12 +11,12 @@ class BatchSQSProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . 'config/batch-sqs.php' => config_path('batch-sqs.php'),
         ]);
+        $this->app["queue"]->addConnector("batch-sqs", function () {
+            return new SqsConnector;
+        });
     }
 
     public function register()
     {
-        $this->app["queue"]->addConnector("batch-sqs", function () {
-            return new SqsConnector;
-        });
     }
 }
