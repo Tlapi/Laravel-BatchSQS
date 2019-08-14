@@ -40,6 +40,9 @@ class BatchQueueTraitTest extends TestCase
                 $this->releasedPayloads = [];
             }
         };
+
+
+        config(['batch-sqs.batch_size' => 10]);
     }
 
 
@@ -50,7 +53,6 @@ class BatchQueueTraitTest extends TestCase
             $payloads[] = implode(' banana ', $this->faker->unique()->words(6));
         }
 
-        config(['coInvestor.queue.config.batch_size' => 10]);
         // First batch of 10 should be released as soon as batch is complete
         for ($i = 0; $i < 10; $i++) {
             $this->fakeQueue->pushRaw($payloads[$i]);
@@ -83,7 +85,6 @@ class BatchQueueTraitTest extends TestCase
             $payloads[] = implode(' banana ', $this->faker->unique()->words(6));
         }
 
-        config(['coInvestor.queue.config.batch_size' => 10]);
         $queue1 ='1';
         // First batch of 10 should be released from queue 1 as soon as batch is complete
         for ($i = 0; $i < 10; $i++) {
