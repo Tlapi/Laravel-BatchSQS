@@ -42,7 +42,7 @@ trait BatchQueueTrait
      */
     protected function checkBatchSize(string $queue): bool
     {
-        return count($this->batches[$queue]) >= config('coInvestor.queue.config.batch_size', 1);
+        return count($this->batches[$queue]) >= config('batch-sqs.batch_size', 1);
     }
 
     public function __destruct()
