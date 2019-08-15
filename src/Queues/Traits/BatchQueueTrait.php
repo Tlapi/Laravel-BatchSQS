@@ -10,6 +10,11 @@ trait BatchQueueTrait
     protected $batches = [];
 
     /**
+     * @var int The maximum size of a message batch. Defaults to 10. Messages will be released once a batch reaches this size.
+     */
+    protected $batchSize = 10;
+
+    /**
      * Should send the array of payloads to the relevant queue driver (and unset each job in the batch array once it's been sent).
      * Array is structured: [['payload' => string, 'queue' => mixed|null, 'options' => array], ... ]
      * @param array $batch
@@ -42,7 +47,12 @@ trait BatchQueueTrait
      */
     protected function checkBatchSize(string $queue): bool
     {
-        return count($this->batches[$queue]) >= config('batch-sqs.batch_size', 1);
+        return count($this->batches[$queue]) >= $this->batchSize;
+    }
+
+    public function setBatchSize(int $size)
+    {
+        $this->batchSize = $size;
     }
 
     public function __destruct()

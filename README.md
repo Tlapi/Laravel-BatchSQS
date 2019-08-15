@@ -26,11 +26,13 @@ This package provides a queue connector called `batch-sqs`. Create a block insid
             'prefix'      => env('AWS_PREFIX', null),
             'queue'       => env('AWS_QUEUE', null),
             'region'      => env('AWS_REGION', null),
+            'batch_size'  => 7,
         ],
 // [...]
 ```
 
-You can use all the usual Laravel SQS queue config options.
+You can use all of the usual Laravel SQS queue config options. In addition, you can set `batch_size` to define how many messages
+will be included in each batch (once the batch is full, the messages will be released to the queue).
 
 ### Modifying messages before release
 
