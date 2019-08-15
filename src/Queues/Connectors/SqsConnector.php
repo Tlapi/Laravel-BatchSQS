@@ -51,6 +51,4 @@ class SqsConnector extends IlluminateSqsConnector
         }
         return $queue;
     }
-
-
 }
