@@ -3,8 +3,9 @@
 namespace CoInvestor\BatchSQS\Queues;
 
 use Illuminate\Support\Facades\Event;
-use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 use Illuminate\Queue\SqsQueue as IlluminateSqsQueue;
+use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
+use CoInvestor\BatchSQS\Queues\Exceptions\MessageSendingFailed;
 use CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent;
 
 class SqsQueue extends IlluminateSqsQueue
@@ -28,6 +29,7 @@ class SqsQueue extends IlluminateSqsQueue
      * @see BatchQueueTrait::releaseBatch()
      * @param array $batch An array of messages to be sent
      * @param string $queue
+     * @throws MessageSendingFailed if SQS indicated that one or more messages were rejected
      * @return mixed
      */
     protected function releaseBatch(string $queue, array &$batch)
@@ -50,6 +52,10 @@ class SqsQueue extends IlluminateSqsQueue
             $messages['Entries'][] = $message;
             unset($batch[$messageKey]);
         }
-        return $this->sqs->sendMessageBatch($messages);
+        $result = $this->sqs->sendMessageBatch($messages);
+        if (!empty($result['Failed'])) {
+            throw new MessageSendingFailed($result['Failed']);
+        }
+        return $result;
     }
 }
