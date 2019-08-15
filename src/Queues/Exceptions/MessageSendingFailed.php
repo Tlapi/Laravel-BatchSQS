@@ -13,14 +13,15 @@ class MessageSendingFailed extends Exception
     public function __construct(ArrayAccess $failures)
     {
         $this->failures = $failures;
+        parent::__construct($this->makeMessage());
     }
 
-    public function __toString()
+    protected function makeMessage()
     {
         $message = '';
         foreach ($this->failures as $failure) {
             $message .= "{$failure['Id']}: ({$failure['Code']}) {$failure['Message']}\n";
         }
-        return $message;
+        $this->message = $message;
     }
 }
