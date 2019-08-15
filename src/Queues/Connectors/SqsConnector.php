@@ -29,7 +29,7 @@ class SqsConnector extends IlluminateSqsConnector
             $config['credentials'] = Arr::only($config, ['key', 'secret', 'token']);
         }
 
-        $queue = $this->applyExtraConfigDirectives(
+        return $this->applyExtraConfigDirectives(
             new SqsQueue(
                 new SqsClient(Arr::except($config, $this->extraConfigDirectives)),
                 $config['queue'],
