@@ -22,6 +22,6 @@ class MessageSendingFailed extends Exception
         foreach ($this->failures as $failure) {
             $message .= "{$failure['Id']}: ({$failure['Code']}) {$failure['Message']}\n";
         }
-        $this->message = $message;
+        return $message;
     }
 }
