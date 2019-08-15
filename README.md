@@ -34,6 +34,9 @@ This package provides a queue connector called `batch-sqs`. Create a block insid
 You can use all of the usual Laravel SQS queue config options. In addition, you can set `batch_size` to define how many messages
 will be included in each batch (once the batch is full, the messages will be released to the queue).
 
+When the queue object is destroyed (e.g. at the end of the request lifecycle, when Laravel is shutting down),
+messages which are still waiting to be sent to the queue will be sent, even if the batch size limit has not been reached.
+
 ### Modifying messages before release
 
 When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent` is dispatched.
@@ -61,4 +64,19 @@ class BatchMessageReleasingEventListener
         return $return;
     }
 }
+```
+
+### Flushing the queue
+
+You may wish to send batches to your queues before they are full, or discard them entirely.
+Here's how:
+
+```php
+use Illuminate\Support\Facades\Queue;
+
+// Send all message batches to their respective queues
+Queue::flush();
+
+// Discard all message batches
+Queue::flush(true);
 ```
