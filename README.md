@@ -36,7 +36,7 @@ will be included in each batch (once the batch is full, the messages will be rel
 
 ### Modifying messages before release
 
-When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Events\BatchMessageReleasingEvent` is dispatched.
+When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent` is dispatched.
 To modify each message before it reaches the queue, simply define a listener which will inspect the message and then return 
 an array which will be merged with the message before it is released:
 
