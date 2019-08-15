@@ -43,6 +43,7 @@ class SqsQueue extends IlluminateSqsQueue
         ];
         foreach ($batch as $messageKey => $toSend) {
             $message = [
+                'Id' => "$messageKey",
                 'MessageBody' => $toSend['payload'],
             ];
             foreach (Event::dispatch(new BatchMessageReleasingEvent($queue, $message)) as $response) {
