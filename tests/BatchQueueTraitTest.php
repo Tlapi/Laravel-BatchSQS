@@ -3,8 +3,8 @@
 namespace CoInvestor\BatchSQS\tests;
 
 use Faker\Factory as Faker;
-use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 use Orchestra\Testbench\TestCase;
+use CoInvestor\BatchSQS\Queues\Traits\BatchQueueTrait;
 
 class BatchQueueTraitTest extends TestCase
 {
@@ -42,7 +42,7 @@ class BatchQueueTraitTest extends TestCase
         };
 
 
-        config(['batch-sqs.batch_size' => 10]);
+        $this->fakeQueue->setBatchSize(10);
     }
 
 
