@@ -52,8 +52,8 @@ class SqsQueue extends IlluminateSqsQueue
             unset($batch[$messageKey]);
         }
         $result = $this->sqs->sendMessageBatch($messages);
-        if (!empty($result['failures'])) {
-            throw new MessageSendingFailed($result['failures']);
+        if (!empty($result['Failed'])) {
+            throw new MessageSendingFailed($result['Failed']);
         }
         return $result;
     }
