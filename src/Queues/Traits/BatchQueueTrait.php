@@ -50,7 +50,7 @@ trait BatchQueueTrait
         return count($this->batches[$queue]) >= $this->batchSize;
     }
 
-    protected function setBatchSize(int $size)
+    public function setBatchSize(int $size)
     {
         $this->batchSize = $size;
     }
