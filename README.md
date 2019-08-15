@@ -15,27 +15,30 @@ Then to publish config files:
 
 ## Usage
 
-This package provides a queue connector called `sqs-batch`. Create a block inside `connections` as usual:
+This package provides a queue connector called `batch-sqs`. Create a block inside `connections` as usual:
 
 ```php
 'connections' => [
-        'sqs-batch' => [
-            'driver'      => 'sqs',
+        'batch-sqs' => [
+            'driver'      => 'batch-sqs',
             'key'         => env('AWS_KEY', null),
             'secret'      => env('AWS_SECRET', null),
             'prefix'      => env('AWS_PREFIX', null),
             'queue'       => env('AWS_QUEUE', null),
             'region'      => env('AWS_REGION', null),
+            'batch_size'  => 7,
         ],
 // [...]
 ```
 
-You can use all the usual Laravel SQS queue config options.
+You can use all of the usual Laravel SQS queue config options. In addition, you can set `batch_size` to define how many messages
+will be included in each batch (once the batch is full, the messages will be released to the queue).
 
 ### Modifying messages before release
 
-When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Events\BatchMessageReleasingEvent` is dispatched.
-To modify each message before it reaches the queue, simply define a listener which will modify the message and then return it:
+When a batch of messages is released to the queue, `CoInvestor\BatchSQS\Queues\Events\BatchMessageReleasingEvent` is dispatched.
+To modify each message before it reaches the queue, simply define a listener which will inspect the message and then return 
+an array which will be merged with the message before it is released:
 
 ```php
 <?php
