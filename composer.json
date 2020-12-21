@@ -27,7 +27,7 @@
     }
   },
   "require": {
-    "laravel/laravel": "^5.8||^6.0||^7.0",
+    "laravel/laravel": "^5.8||^6.0||^7.0||^8.0",
     "aws/aws-sdk-php": "^3"
   },
   "require-dev": {
