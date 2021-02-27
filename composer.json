@@ -27,7 +27,9 @@
     }
   },
   "require": {
-    "laravel/laravel": "^5.8||^6.0||^7.0||^8.0",
+    "illuminate/contracts": ">=4.1",
+    "illuminate/queue": ">=4.1",
+    "illuminate/support": ">=4.1",
     "aws/aws-sdk-php": "^3"
   },
   "require-dev": {
